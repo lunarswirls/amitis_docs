@@ -9,7 +9,7 @@ Some percent of university heating comes from computing center
 ## Temporal Decomposition
 - Iterative solver definitions:
 	- Total number of steps = 100000 
-	- Timestep delta t = 0.001 [units: seconds]
+	- Time step delta t = 0.001 [units: seconds]
 - Total number of steps * delta t = total length of simulation
 
 ## Spatial Decomposition

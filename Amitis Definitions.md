@@ -9,8 +9,8 @@
 ## Temporal Decomposition
 - Iterative solver definitions:
 	- Total number of steps = 100000 
-	- Time step delta t = 0.001 [units: seconds]
-- Total number of steps * delta t = total length of simulation
+	- Time step $\delta$t = 0.001 [units: seconds]
+- Total number of steps * $\delta$t = total length of simulation
 
 ## Spatial Decomposition
 - All units are SI
@@ -24,9 +24,9 @@
 - Grid cell geometry must be of similar form to domain
 	- Recommended to choose cubic grid cells
 - Grid cell definitions:
-	- nx => delta x = (x_max - x_min) / nx
-	- ny => delta y = (y_max - y_min) / ny
-	- nz => delta z = (z_max - z_min) / nz
+	- nx => $\delta$x = (x_max - x_min) / nx
+	- ny => $\delta$y = (y_max - y_min) / ny
+	- nz => $\delta$z = (z_max - z_min) / nz
 - Total number of grid cells = nx * ny * nz
 
 ## Computing Decomposition
@@ -70,6 +70,6 @@
 	- ppc = 15 [units: not SI! integer number of particles in each grid cell at t=0]
 - Distribution of all particles is Maxwellian (velocity bulk, temperature stdev)
 - Total number of particles becomes
-	- tnp = nx * ny * nz * sum from i=1 to numspecies over ppc_i
+	- tnp = nx * ny * nz * $\sum_{i=1}^{numspecies} ppc_i$
 - Macroparticle approximation to reduce computation cost by only "moving" one particle that contributes an equal effect as moving the same particle density 
 	- In the code, calculates pweight = (cell volume * density) / ppc

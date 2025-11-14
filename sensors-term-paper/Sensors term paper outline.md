@@ -1,3 +1,0 @@
-Lyman Alpha Mapping Project (LAMP) is an [[imaging spectrometer]] with a wavelength range of 57.5–196.5nm on [[LRO]]. LAMP detects radiation in the ultraviolet (UV) region of the [[electromagnetic spectrum]] to map the [[Permanently Shadowed Regions]] (PSRs) of the [[Moon]]. LAMP utilizes the interplanetary medium, which glows very brightly at the Lyman-alpha (Ly-$\alpha$) wavelength (121.6 nm), and UV-bright [[stars]], which are the dominant source of light in the PSRs. 
-
-Ly-$\alpha$ radiation is emitted when an electron transitions from the n=2 orbital to the n=1 ground state of a hydrogen atom, where n is the principle quantum number. The Ly-$\alpha$ line is the spectral line of hydrogen that corresponds specifically to the first term of the [[Lyman series]]. 

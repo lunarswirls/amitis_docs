@@ -1,1 +1,0 @@
-Stars emit energy across the [[electromagnetic spectrum]] due to fusion and fission in their cores and convection in their outer layers. The type of radiation emissions depends on the surface temperature and activity of the star, which is related to the evolution and spectral type of the star and can be highly variable. 

@@ -1,0 +1,1 @@
+Seed surface with monopole grid and initialize input conditions of a known perturbation and iterate monopole parameters until best fit with observed field

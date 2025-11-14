@@ -28,6 +28,7 @@
 	- ny => $\Delta$y = (y_max - y_min) / ny
 	- nz => $\Delta$z = (z_max - z_min) / nz
 - Total number of grid cells = nx * ny * nz
+![[simulation_domain.png]]
 
 ## Computing Decomposition
 - Specify number of GPUs to discretize simulation domain along each axis
@@ -60,8 +61,8 @@
 - Definitions:
 	- numspecies
 - Definition per species i.e. proton:
-	- mass = 1.0 [units: not SI! just arbitrary]
-	- charge = 1.0 [units: not SI! just arbitrary]
+	- mass = 1.0 [units: not SI!]
+	- charge = 1.0 [units: not SI!]
 	- density = 5e6 [units: #/m^3]
 	- vx = -400e3 [units: m/s]
 	- vy = -20e3 [units: m/s] (prefer small values, for large values then rotate simulation domain)

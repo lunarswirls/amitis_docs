@@ -1,4 +1,4 @@
-# Obsidian Vault
+# Amitis Documentation
 
 ## Description
-My personal notes and scribbles
+Markdown notes for Amitis documentation

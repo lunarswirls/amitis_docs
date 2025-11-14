@@ -52,8 +52,10 @@
 ![[gpu_domain_ghost_cells.png]]
 
 ## Boundary Considerations
-- Plasma always enter along -X hat into Y plane ("inflow boundary") and exits Y plane in -X hat ("outflow boundary")
+- Plasma always enter into Y plane at $x_{max}$ ("inflow boundary") and exits Y plane at $x_{min}$ ("outflow boundary")
+	- Y planes are perfect absorbers, no propagation or periodicity
 	- Define vx as negative i.e. vx = -400e3 [units: m/s]
+![[simulation_domain_velocity.png]]
 - Particles that exit the X and Z planes are reinjected to the opposite side, boundaries are periodic
 - Electromagnetic fields are also periodic at boundaries so simulation domain must be chosen carefully so unwanted disturbances do not propagate across periodic boundaries
 - Simulation domain cannot be made arbitrarily large without driving up computational cost

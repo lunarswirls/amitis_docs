@@ -28,27 +28,28 @@
 	- ny => $\Delta$y = (y_max - y_min) / ny
 	- nz => $\Delta$z = (z_max - z_min) / nz
 - Total number of grid cells = nx * ny * nz
-![[simulation_domain.png]]
+![[simulation_domain_coordinates.png]]
 
 ## Computing Decomposition
-- Specify number of GPUs to discretize simulation domain along each axis
+- Specify number of GPUs to discretize simulation domain along each axis (recommended to be cubic)
 	- ngpux (should be divisible by nx)
 		-  Recommend against using ngpux > 1 due to computational cost of network communication between GPUs when particle traveling along X 
 	- ngpuy (should be divisible by ny)
 	- ngpuz (should be divisible by nz)
-- Recommended to be cubic
+![[gpu_domain_slice.png]]
 - Per GPU, one cell is added to all sides of all axes
+	- The "ghost cells" copy the closest cells from the neighboring GPU domain to hand off things that transition between GPU domains
 - Example:
 	- Discretization
-		- ngpux = 2
-		- ngpuy = 1
+		- ngpux = 1
+		- ngpuy = 2
 		- ngpuz = 1
-		- nx = 10
-		- ny = 20
-		- nz = 30
-	- Each GPU in X gets 5 grid cells
-	- Then GPU grid in X-Z plane is actually 7 cells in X and 32 cells in Z
-- The "ghost cells" copy the closest cells from the neighboring GPU domain to hand off things that transition between GPU domains
+		- nx = 20
+		- ny = 10
+		- nz = 10
+	- Each GPU in Y gets 5 grid cells
+	- Then GPU grid in Y-Z plane is actually 7 cells in Y and 12 cells in Z
+![[gpu_domain_ghost_cells.png]]
 
 ## Boundary Considerations
 - Plasma always enter along -X hat into Y plane ("inflow boundary") and exits Y plane in -X hat ("outflow boundary")

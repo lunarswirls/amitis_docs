@@ -1,0 +1,1 @@
+Lunar Reconnaissance Orbiter was launched June 18, 2009 and achieved orbital insertion around the [[Moon]] on June 23, 2009. It carries a suite of six instruments and has been observing the surface of the Moon for over a decade in a polar orbit. 

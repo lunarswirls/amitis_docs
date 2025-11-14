@@ -1,5 +1,5 @@
-3D in spatial configuration and velocity
-Some percent of university heating comes from computing center
+# Amitis Definitions
+- Amitis is three dimensional in spatial and velocity components
 
 ## Object
 - Center of body is always as center of simulation reference frame

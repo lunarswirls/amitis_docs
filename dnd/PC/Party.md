@@ -1,4 +1,0 @@
-## Core Characters
-
-## Visiting Characters
-

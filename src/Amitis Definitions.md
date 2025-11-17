@@ -28,7 +28,7 @@
 	- ny => $\Delta$y = (y_max - y_min) / ny
 	- nz => $\Delta$z = (z_max - z_min) / nz
 - Total number of grid cells = nx * ny * nz
-![[simulation_domain_coordinates.png]]
+![sim_domain_coordinates](figs/simulation_domain_coordinates.png)
 
 ## Computing Decomposition
 - Specify number of GPUs to discretize simulation domain along each axis (recommended to be cubic)
@@ -36,7 +36,7 @@
 		-  Recommend against using ngpux > 1 due to computational cost of network communication between GPUs when particle traveling along X 
 	- ngpuy (should be divisible by ny)
 	- ngpuz (should be divisible by nz)
-![[gpu_domain_slice.png]]
+![gpu_domain_slice](figs/gpu_domain_slice.png)
 - Per GPU, one cell is added to all sides of all axes
 	- The "ghost cells" copy the closest cells from the neighboring GPU domain to hand off things that transition between GPU domains
 - Example:
@@ -49,13 +49,13 @@
 		- nz = 10
 	- Each GPU in Y gets 5 grid cells
 	- Then GPU grid in Y-Z plane is actually 7 cells in Y and 12 cells in Z
-![[gpu_domain_ghost_cells.png]]
-
+![gpu_domain_ghost_cells](figs/gpu_domain_ghost_cells.png)
+  
 ## Boundary Considerations
 - Plasma always enter into Y plane at $x_{max}$ ("inflow boundary") and exits Y plane at $x_{min}$ ("outflow boundary")
 	- Y planes are perfect absorbers, no propagation or periodicity
 	- Define vx as negative i.e. vx = -400e3 [units: m/s]
-![[simulation_domain_velocity.png]]
+![simulation_domain_velocity](figs/simulation_domain_velocity.png)
 - Particles that exit the X and Z planes are reinjected to the opposite side, boundaries are periodic
 - Electromagnetic fields are also periodic at boundaries so simulation domain must be chosen carefully so unwanted disturbances do not propagate across periodic boundaries
 - Simulation domain cannot be made arbitrarily large without driving up computational cost

@@ -1,7 +1,7 @@
 # Amitis Overview
-- Amitis is three dimensional in spatial and velocity components
+- Amitis is three-dimensional in spatial and velocity components
 - Cannot resolve electron scales, must stay on ion scales!
-	- $\Delta l$ = $min$($\Delta x$, $\Delta y$, $\Delta z$) $\gg \delta_e$ (or $\geq 10\delta_e$)
+	- $\Delta l$ = $min$($\Delta x$, $\Delta y$, $\Delta z$) $\gg \delta_e$ (i.e., $\geq 10\delta_e$)
 
 # Input file definitions
 - Variable names in `*.inp` file should not be changed! 
@@ -130,7 +130,9 @@
 		- Velocities not written directly, plasma current density output
 		- Can get total charge density and per-species charge density (if you have only one species, only output $rho\_tot$)
 
-# Interior
+# Interior file definitions
+- Row format in `*.itr` file should not be changed! 
+
 For a single conductivity profile, define one row
 ```
 | X   | Y   | Z   | R_x      | R_y      | R_z      | eta   |

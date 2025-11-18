@@ -1,4 +1,6 @@
-All SBATCH commands require a hashtag in front of them
+# Job Script
+- All SBATCH commands require a hashtag in front of them
+- To comment out a line, put 2+ hashtags
 ```
 #!/bin/bash
 #SBATCH A hpc2n2025-191  # project number

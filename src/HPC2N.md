@@ -14,8 +14,8 @@ ssh user@kebnekaise.hpc2n.umu.se
 cd .../home/
 ```
 
-- Project has `large_storage` subnode shared among all users split into ~40 TB active, 0.5 PB for archiving
-	- Neither is backed up 
+- Project has large storage subnode shared among all users split into ~40 TB for active use and 0.5 PB for archiving
+	- Neither is backed up (yet...)
 - Active file storage subnode path for Amitis is `/proj/nobackup/amitis/`
 - Jobs are managed using [SLURM](https://slurm.schedmd.com/overview.html)
 - Basic file browser and upload/download via [Cyberduck](https://cyberduck.io/)

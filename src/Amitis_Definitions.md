@@ -124,7 +124,7 @@
 	- $logstampcycle$ = 10 [units: number of steps] (0: off)
 	- $rstcycle$ = 0 [units: number of steps] (0: off)
 - Fields to write:
-	- $fld\_save\_list$ = unordered list of case-sensitive strings
+	- *fld\_save\_list* = unordered list of case-sensitive strings
 		- Any subfield can be included or excluded, if string is not valid output field then **??**
 		- Crustal fields and dipole fields are saved as $B_{d}$
 		- Velocities not written directly, plasma current density output

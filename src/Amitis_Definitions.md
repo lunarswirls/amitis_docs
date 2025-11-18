@@ -1,5 +1,11 @@
-# Amitis Definitions
+# Amitis Overview
 - Amitis is three dimensional in spatial and velocity components
+
+# Input file definitions
+- Variable names in `*.inp` file should not be changed! 
+
+## Configuration
+- Output file naming convention: `/out/Amitis_{fldname}_XXXXXX.h5`
 
 ## Object
 - Center of body is always as center of simulation reference frame

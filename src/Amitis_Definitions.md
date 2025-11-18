@@ -59,6 +59,7 @@
 	- Each GPU in Y gets 5 grid cells
 	- Then GPU grid in Y-Z plane is actually 7 cells in Y and 12 cells in Z
 ![gpu_domain_ghost_cells](figs/gpu_domain_ghost_cells.png)
+- Total number of GPUs ($ngpux + ngpuy + ngpuz$) must be equal to GPUs requested in [job script](Job_Script.md)!
   
 ## Boundary Considerations
 - Plasma always enter into Y plane at $x_{max}$ ("inflow boundary") and exits Y plane at $x_{min}$ ("outflow boundary")

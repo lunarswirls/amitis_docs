@@ -32,7 +32,7 @@ mkdir /test/
 		i. Can be edited during run! Change will be applied at next iteration and logged 
 	c. Amitis.itr (contains interior profile)
 	d. submission file (`sub.sh`)
-5. To place simulation in job queue to be run:
+5. To place simulation in job queue, run `sub.sh` that contains [job definitions](Job_Script.md):
 ```
 sbatch sub.sh
 ```

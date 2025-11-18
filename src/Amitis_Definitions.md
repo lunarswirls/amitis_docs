@@ -1,7 +1,7 @@
 # Amitis Overview
 - Amitis is three-dimensional in spatial and velocity components
 - Cannot resolve electron scales, must stay on ion scales!
-	- $\Delta l$ = $min$($\Delta x$, $\Delta y$, $\Delta z$) $\gg \delta_e$ (i.e., $\geq 10\delta_e$)
+	- $\Delta l = min$($\Delta x$, $\Delta y$, $\Delta z$) $\gg \delta_e$ (i.e., $\Delta l \geq 10\delta_e$)
 
 # Input file definitions
 - Variable names in `*.inp` file should not be changed! 
@@ -27,15 +27,15 @@
 	- Spherical bodies are approximated by many cubes = sawtooth effect at limbs
 - Cartesian coordinate system
 - Simulation domain definitions:
-	- $x_{min}$ -> $x_{max}$ [units: meter]
-	- $y_{min}$ -> $y_{max}$ [units: meter]
-	- $z_{min}$ -> $z_{max}$ [units: meter]
+	- $x_{min} \rightarrow x_{max}$ [units: meter]
+	- $y_{min} \rightarrow y_{max}$ [units: meter]
+	- $z_{min} \rightarrow z_{max}$ [units: meter]
 - Grid cell geometry must be of similar form to domain
 	- Recommended to choose cubic grid cells
 - Grid cell definitions:
-	- $nx$ => $\Delta x$ = ($x_{max}$ - $x_{min}$) / $nx$
-	- $ny$ => $\Delta y$ = ($y_{max}$ - $y_{min}$) / $ny$
-	- $nz$ => $\Delta z$ = ($z_{max}$ - $z_{min}$) / $nz$
+	- $nx \Rightarrow \Delta x$ = ($x_{max}$ - $x_{min}$) / $nx$
+	- $ny \Rightarrow \Delta y$ = ($y_{max}$ - $y_{min}$) / $ny$
+	- $nz \Rightarrow \Delta z$ = ($z_{max}$ - $z_{min}$) / $nz$
 - Total number of grid cells = $nx$ * $ny$ * $nz$
 ![sim_domain_coordinates](figs/simulation_domain_coordinates.png)
 
@@ -71,7 +71,7 @@
 
 ## Species Decomposition
 - Definitions:
-	- $numspecies$
+	- $numspecies$ = integer defining total number of particle species
 - Definition per species i.e. proton:
 	- $name$ = arbitary string 
 	- $mass$ = 1.0 [units: not SI! amu]
@@ -85,7 +85,7 @@
 	- $type$ = 0 or 1 [0: upstream plasma (default), 1: exospheric (or planetary plasma)]
 - Distribution of all particles is Maxwellian (velocity bulk, temperature stdev)
 - Total number of particles becomes
-	- $tnp$ = $nx$ * ny $*$ n$z * $\sum_{i=1}^{\text{numspecies}} \text{ppc}_i$
+	- $tnp$ = $nx$ * $ny$ * $nz$ * $\sum_{i=1}^{\text{numspecies}} \text{ppc}_{i}$
 	- $tnp\_percent$ = 0.05 [units: percent] (buffer for preallocation of $tnp$)
 - Macroparticle approximation to reduce computation cost by only "moving" one particle that contributes an equal effect as moving the same particle density 
 	- In the code, calculates pweight = (cell volume * density) / ppc

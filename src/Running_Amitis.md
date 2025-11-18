@@ -1,7 +1,7 @@
 All input files and output logs are text
 
 ## Amitis Executable Inputs
-- Amitis.inp -> main input file containing [[Amitis Definitions|required simulation variables]]
+- Amitis.inp -> main input file containing [required simulation variables](Amitis_Definitions.md)
 	- Can be edited during run! Change will be applied at next iteration and logged 
 - Amitis.itr -> interior profile
 

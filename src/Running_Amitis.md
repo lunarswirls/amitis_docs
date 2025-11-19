@@ -30,7 +30,7 @@ mkdir /test/
 	a. Amitis_exe. (could exist in top level folder, not required in each simulation directory)
 	b. Amitis.inp (contains [required simulation variables](Amitis_Definitions.md))
 		i. Can be edited during run! Change will be applied at next iteration and logged 
-	c. Amitis.itr (contains interior profile)
+	c. Amitis.itr (contains [interior profile](Interior_file.md))
 	d. submission file (`sub.sh`)
 5. To place simulation in job queue, run `sub.sh` that contains [job definitions](Job_Script.md):
 ```

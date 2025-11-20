@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Fatemi"
+  given-names: "Shahab"
+  orcid: "https://orcid.org/0000-0002-9450-6672"
+- family-names: "Poppe"
+  given-names: "Andrew R."
+  orcid: "https://orcid.org/0000-0001-8137-8176"
+- family-names: "Delory"
+  given-names: "Gregory T."
+  orcid: "https://orcid.org/0000-0002-6607-4411"
+- family-names: "Farrell"
+  given-names: "William M."
+  orcid: "https://orcid.org/0000-0002-2284-7654"
+title: "AMITIS: A 3D GPU-Based Hybrid-PIC Model for Space and Plasma Physics"
+version: 2025-01-16
+doi: 10.1088/1742-6596/837/1/012017
+date-released: 2017
+url: "https://www.amitiscode.com/"

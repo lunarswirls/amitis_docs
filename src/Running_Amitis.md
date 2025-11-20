@@ -1,11 +1,13 @@
-All input files and output logs are text
+# Running Amitis
+- All input files and output logs are text
+- Output data files are [Hierarchical Data Format (HDF)](https://en.wikipedia.org/wiki/Hierarchical_Data_Format)
 
 ## Generated folders
 - /log/ -> log file per GPU at every X number of time steps
-- /out/ -> hdf5 containing nicely formatted output
+- /out/ -> HDF5 files containing nicely formatted output
 	- Output can contain particle and field files (separate) based on input flags
 		- Can specify what to contain for each file type
-- /rst/ -> hdf5 containing unformatted binary output with checksum at every X number of time steps to restart (can be TBs so be judicious in selecting X)
+- /rst/ -> HDF5 files containing unformatted binary output with checksum at every X number of time steps to restart (can be TBs so be judicious in selecting X)
 ### Depend on input settings
 - /planes/
 - /subsets/
@@ -47,3 +49,4 @@ scancel {job_id}
 
 ## Numerical Noise
 - Can be resolved by changing $\Delta t$ or other tricks
+- 

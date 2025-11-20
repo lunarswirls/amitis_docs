@@ -1,0 +1,3 @@
+- Python package for ingesting HDF files and analyzing/plotting data
+- Some variables need to be computed, not stored in HDF file, see `print_all_attributes` for list of what is stored
+- 

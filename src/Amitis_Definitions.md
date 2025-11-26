@@ -60,6 +60,24 @@
 	- Then GPU grid in Y-Z plane is actually 7 cells in Y and 12 cells in Z
 ![gpu_domain_ghost_cells](/figs/gpu_domain_ghost_cells.png)
 - Total number of GPUs ($ngpux + ngpuy + ngpuz$) must be equal to GPUs requested in [job script](Job_Script.md)!
+
+##### Common pitfalls:
+The number of GPUs has to be high enough to support, however many particles you are assigning in your simulation. In a rather small example we can see that roughly 36 million particles took up 1.6 GB on the single GPU we used for this example. 
+
+```
+Field => Allocating Fields memory on DEVICE ...!
+Particle     => Allocating Particles memory on HOST ...!
+Initializing 36208972 particles ...!
+...
+Initialization completed...!
+Particle     => Allocating Particles memory on DEVICE ...!
+=====================================================
+Total particle memory on  HOST  1657.52  MB / GPU
+Total particle memory on DEVICE 1713.85  MB / GPU
+Total field    memory on  HOST  1190.18  MB / GPU
+Total field    memory on DEVICE 883.13   MB / GPU
+```
+Now consider an example with billions of particles, a single GPU with 40GB of memory might not be able to store it. Also consider the field memory.
   
 ## Boundary Considerations
 - Plasma always enter into Y plane at $x_{max}$ ("inflow boundary") and exits Y plane at $x_{min}$ ("outflow boundary")
@@ -68,7 +86,9 @@
 ![simulation_domain_velocity](/figs/simulation_domain_velocity.png)
 - Particles that exit the X and Z planes are reinjected to the opposite side, boundaries are periodic
 - Electromagnetic fields are also periodic at boundaries so simulation domain must be chosen carefully so unwanted disturbances do not propagate across periodic boundaries
-- Simulation domain cannot be made arbitrarily large without driving up computational cost
+- Simulation domain cannot be made arbitrarily large without driving up computational cost.
+
+
 
 ## Species Decomposition
 - Definitions:

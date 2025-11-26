@@ -62,7 +62,7 @@
 - Total number of GPUs ($ngpux + ngpuy + ngpuz$) must be equal to GPUs requested in [job script](Job_Script.md)!
 
 ##### Common pitfalls:
-The number of GPUs has to be high enough to support, however many particles you are assigning in your simulation. In a rather small example we can see that roughly 36 million particles took up 1.6 GB on the single GPU we used for this example. 
+The number of GPUs has to be high enough to support, however many particles you are assigning in your simulation. In a rather small example we can see that roughly 36 million particles took up 1.6 GB on the single GPU we used for this example.
 
 ```
 Field => Allocating Fields memory on DEVICE ...!
@@ -77,8 +77,17 @@ Total particle memory on DEVICE 1713.85  MB / GPU
 Total field    memory on  HOST  1190.18  MB / GPU
 Total field    memory on DEVICE 883.13   MB / GPU
 ```
-Now consider an example with billions of particles, a single GPU with 40GB of memory might not be able to store it. Also consider the field memory.
-  
+
+Now consider an example with billions of particles, a single GPU with 40GB of memory might not be able to store it.
+
+Both fields and particles scale up the memory usage M according to these formulae:
+
+- $M_{\mathrm{particles}}$ = $A \frac{nx\cdot ny \cdot nz\cdot \sum_{i=1}{N_\mathrm{species}}}{\mathrm{GPU}}$
+- $M_\mathrm{fields} = B\frac{nx\cdot ny\cdot nz}{\mathrm{GPU}}$
+
+Where A and B are empirical constants. As of now B is defined as 20. But keep additional memory overhead in mind. The mean GPU memory usage should not extend 80%, to keep room for that. 
+
+
 ## Boundary Considerations
 - Plasma always enter into Y plane at $x_{max}$ ("inflow boundary") and exits Y plane at $x_{min}$ ("outflow boundary")
 	- Y planes are perfect absorbers, no propagation or periodicity

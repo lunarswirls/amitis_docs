@@ -1,7 +1,7 @@
 # Amitis Overview
 - Amitis is three-dimensional in spatial and velocity components
 - Cannot resolve electron scales, must stay on ion scales!
-	- $\Delta l = min$($\Delta x$, $\Delta y$, $\Delta z$) $\gg \delta_e$ (i.e., $\Delta l \geq 10\delta_e$  from [Equations](Equations))
+	- $\Delta l = min$($\Delta x$, $\Delta y$, $\Delta z$) $\gg \delta_e$ (i.e., $\Delta l \geq 10\delta_e$  from [Equations](Equations.md))
 
 # Input file definitions
 - Variable names in `*.inp` file should not be changed! 

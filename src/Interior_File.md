@@ -24,10 +24,17 @@ Amitis then works its way from the outside overwriting conductivity values with 
 And even more complex geometries can be defined such as PKT but one must be careful defining regions of interest! 
 
 ## Common pitfalls
+
+### Line breaks
 Be careful editing this file, there should be no trailing linebreaks, it will otherwise be read as a layer with a conductivity of 0, which will cause:
 
 ```
  <<< *ERR in task 0 >>> (validate:128) | Interior resistivity (0.000000e+00) for layer (2)
  Interior resistivity (0.000000e+00) for layer (2) should be larger than zero!
 ```
-The same is the case when adding comments, you **can not** add any comments in this file.
+
+### Comments
+You **can not** add any comments in this file, the code will produce the same error as above. 
+
+### Resolution
+To create several conductivity layers or shapes, keep in mind the resolution set for the grid cells. These should be at least two times smaller, such that the conductivity profile will be resolved. The higher the grid resolution the better.

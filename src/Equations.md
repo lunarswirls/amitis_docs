@@ -26,3 +26,7 @@ where $\Delta l$ = $min$($\Delta x$, $\Delta y$, $\Delta z$) is the minimal cell
 
 ## Charge Density
 $\rho=qn \Rightarrow n = \frac{q}{\rho}$
+
+
+## Useful script
+A [python notebook](UsefulScript.ipynb) can also be found to compute these equations.

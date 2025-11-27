@@ -30,3 +30,4 @@ Be careful editing this file, there should be no trailing linebreaks, it will ot
  <<< *ERR in task 0 >>> (validate:128) | Interior resistivity (0.000000e+00) for layer (2)
  Interior resistivity (0.000000e+00) for layer (2) should be larger than zero!
 ```
+The same is the case when adding comments, you **can not** add any comments in this file.

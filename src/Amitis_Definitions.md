@@ -39,6 +39,8 @@
 - Total number of grid cells = $nx$ * $ny$ * $nz$
 ![sim_domain_coordinates](/figs/simulation_domain_coordinates.png)
 
+**Note**: Make sure that $x_\mathrm{max}-x_\mathrm{min})/dx$ is a natural number for all x,y,z cases.
+
 ## Computing Decomposition
 - Specify number of GPUs to discretize simulation domain along each axis (recommended to be cubic)
 	- $ngpux$ (should be divisible by $nx$)

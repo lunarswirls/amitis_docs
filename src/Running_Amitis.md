@@ -51,7 +51,7 @@ After a job has been submitted and is running, the resource monitor can be acces
 ```
 job-usage {job-id}
 ```
-which results in a link to Grafana which shows showing all the resources of HPC2N that are used. (An example can be found [here](https://usage.hpc2n.umu.se/d/job-on-kebnekaise-gpu?var-jobid=35369534&from=1763561221000&to=1763563788000). An explanation can be seen under [resource-monitor](resource-monitor.md).
+which results in a link to Grafana which shows showing all the resources of HPC2N that are used. An example can be found [here](https://usage.hpc2n.umu.se/d/job-on-kebnekaise-gpu?var-jobid=35369534&from=1763561221000&to=1763563788000). An explanation can be seen under [resource-monitor](resource-monitor.md).
 
 ## Numerical Noise
 - Can be resolved by changing $\Delta t$ or other tricks

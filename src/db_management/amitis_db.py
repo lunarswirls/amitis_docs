@@ -3,10 +3,11 @@
 # Imports:
 import argparse
 import os
-import sqlite3
+import mysql.connector
 import re
 from pathlib import Path
 import sys
+import json
 
 # --------------------------------------------------
 # SQL table definitions
@@ -38,6 +39,7 @@ def parse_input_variables(filename: Path):
             if match:
                 var, val = match.groups()
                 variables.append((var, val))
+                # print(var, val)
 
     return variables
 
@@ -67,22 +69,30 @@ def ensure_table_exists(cursor, table_name, columns):
     Ensure a table exists with at least the given columns.
     Columns is a list of strings.
     """
-    # Create table if it doesn't exist
+
+    # Create table if it doesn't exist — minimal starting point
     cursor.execute(f"""
-        CREATE TABLE IF NOT EXISTS {table_name} (
+        CREATE TABLE IF NOT EXISTS `{table_name}` (
             subdir TEXT,
             source_file TEXT
         )
     """)
 
-    # Check existing columns
-    cursor.execute(f"PRAGMA table_info({table_name})")
-    existing_cols = {row[1] for row in cursor.fetchall()}
+    # Check existing columns via INFORMATION_SCHEMA
+    cursor.execute("""
+        SELECT COLUMN_NAME
+        FROM INFORMATION_SCHEMA.COLUMNS
+        WHERE TABLE_SCHEMA = DATABASE()
+        AND TABLE_NAME = %s
+    """, (table_name,))
+    existing_cols = {row[0] for row in cursor.fetchall()}
 
-    # Add any missing columns
+    # Add missing columns (must specify type)
     for col in columns:
         if col not in existing_cols:
-            cursor.execute(f"ALTER TABLE {table_name} ADD COLUMN {col} TEXT")
+            cursor.execute(
+                f"ALTER TABLE `{table_name}` ADD COLUMN `{col}` TEXT"
+            )
 
 
 def insert_input_variables(cursor, table_name, variables, subdir, source_file):
@@ -90,9 +100,23 @@ def insert_input_variables(cursor, table_name, variables, subdir, source_file):
     Insert a single row for the input file.
     `variables` is a list of (var, val) pairs.
     """
+
     # Extract variable names and ensure needed table columns
     variable_names = [var for var, _ in variables]
     ensure_table_exists(cursor, table_name, variable_names + ["subdir", "source_file"])
+
+    # Check if entry exists
+    cursor.execute(f"""
+            SELECT 1 FROM `{table_name}`
+            WHERE subdir = %s AND source_file = %s
+            LIMIT 1
+        """, (subdir, source_file))
+
+    exists = cursor.fetchone()
+
+    if exists:
+        print("Entry already exists, skipping insert.")
+        return False
 
     # Build dictionary of column → value
     row_data = {var: val for var, val in variables}
@@ -100,44 +124,63 @@ def insert_input_variables(cursor, table_name, variables, subdir, source_file):
     row_data["source_file"] = source_file
 
     # Prepare INSERT statement dynamically
-    columns = ", ".join(row_data.keys())
-    placeholders = ", ".join(["?"] * len(row_data))
+    columns = ", ".join(f"`{c}`" for c in row_data.keys())
+    placeholders = ", ".join(["%s"] * len(row_data))
     values = list(row_data.values())
 
     cursor.execute(
-        f"INSERT INTO {table_name} ({columns}) VALUES ({placeholders})",
+        f"INSERT INTO `{table_name}` ({columns}) VALUES ({placeholders})",
         values
     )
+    return True
 
 
 def ensure_itr_table(cursor):
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS interior_inputs (
-            X      TEXT,
-            Y      TEXT,
-            Z      TEXT,
-            R_x    TEXT,
-            R_y    TEXT,
-            R_z    TEXT,
-            eta    TEXT,
-            subdir TEXT,
-            source_file TEXT
+    cursor.execute(f"""
+        CREATE TABLE IF NOT EXISTS `{interior_table}` (
+            X          VARCHAR(255),
+            Y          VARCHAR(255),
+            Z          VARCHAR(255),
+            R_x        VARCHAR(255),
+            R_y        VARCHAR(255),
+            R_z        VARCHAR(255),
+            eta        VARCHAR(255),
+            subdir     VARCHAR(255),
+            source_file VARCHAR(255)
         )
     """)
 
 
 def insert_itr_rows(cursor, table_name, rows, subdir, source_file):
+
+    ensure_itr_table(cursor)
+
+    # Check if entry exists
+    cursor.execute(f"""
+            SELECT 1 FROM `{table_name}`
+            WHERE subdir = %s AND source_file = %s
+            LIMIT 1
+        """, (subdir, source_file))
+
+    exists = cursor.fetchone()
+
+    if exists:
+        print("Entry already exists, skipping insert.")
+        return False
+
     for row in rows:
         cursor.execute(f"""
-            INSERT INTO {table_name}
+            INSERT INTO `{table_name}`
             (X, Y, Z, R_x, R_y, R_z, eta, subdir, source_file)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, row + [subdir, source_file])
+
+    return True
 
 
 def main():
     parser = argparse.ArgumentParser(description="Database management tool for Amitis input files")
-    parser.add_argument('amitis_db', help='Amitis SQLite database file')
+    parser.add_argument('amitis_db', help='JSON credentials for local Amitis MySQL database')
     parser.add_argument('--input_file', default=None, help='Amitis input file (*.inp)')
     parser.add_argument('--interior_file', default=None, help='Amitis interior file (*.itr)')
     parser.add_argument('--input_dir', default=None, help='Amitis input directory containing input file (*.inp) and interior file (*.itr)')
@@ -151,17 +194,22 @@ def main():
         err_files = list(input_dir.glob("*.err"))
         if len(err_files) == 1:
             err_file = err_files[0]
+
+            if os.path.getsize(err_file) > 0:
+                print("ERROR: Simulation did not run successfully, see log file for details.")
+                sys.exit(1)
+                # TODO: gracefully continue if searching directory recursively
         elif len(err_files) > 1:
             print("WARNING: More than one error file found, taking most recent file.")
             err_file = max(err_files, key=os.path.getmtime)
+
+            if os.path.getsize(err_file) > 0:
+                print("ERROR: Simulation did not run successfully, see log file for details.")
+                sys.exit(1)
+                # TODO: gracefully continue if searching directory recursively
         else:
             print("WARNING: No error file found, TODO add flag if test has been run yet.")
             # TODO: add flag if test has been run yet
-
-        if os.path.getsize(err_file) > 0:
-            print("ERROR: Simulation did not run successfully, see log file for details.")
-            sys.exit(1)
-            # TODO: gracefully continue if searching directory recursively
 
         inp_files = list(input_dir.glob("*.inp"))
         itr_files = list(input_dir.glob("*.itr"))
@@ -210,19 +258,29 @@ def main():
     vars2 = parse_interior_variables(itr_file)
 
     # Open db connection and initialize cursor
-    conn = sqlite3.connect(args.amitis_db)
+    with open(args.amitis_db) as f:
+        creds = json.load(f)
+
+    conn = mysql.connector.connect(
+        host=creds["host"],
+        user=creds["user"],
+        password=creds["password"],
+        database=creds["database"],
+        port=creds.get("port", 3306)
+    )
     cur = conn.cursor()
 
     # Dump input and interior files to respective tables in db
-    insert_input_variables(cur, input_table, vars1, subdir_name, inp_file.name)
-    insert_itr_rows(cur, interior_table, vars2, subdir_name, itr_file.name)
+    inp_success = insert_input_variables(cur, input_table, vars1, subdir_name, inp_file.name)
+    itr_success = insert_itr_rows(cur, interior_table, vars2, subdir_name, itr_file.name)
 
     conn.commit()
     conn.close()
 
-    print(f"Imported {len(vars1)} rows from {inp_file.name}")
-    print(f"Imported {len(vars2)} rows from {itr_file.name}")
-    print(f"Database saved as {args.amitis_db}")
+    if inp_success:
+        print(f"Imported {len(vars1)} variables from {inp_file.name}")
+    if itr_success:
+        print(f"Imported {len(vars2)} conductivity profile(s) from {itr_file.name}")
 
 
 if __name__ == "__main__":

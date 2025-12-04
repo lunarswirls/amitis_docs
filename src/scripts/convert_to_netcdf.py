@@ -12,21 +12,18 @@ base_dir = Path(cwd+"/Data")
 print(base_dir)
 
 # All files in base_dir matching Amitis_field*.h5 (non‑recursive)
-file_paths = sorted(base_dir.glob("Amitis_field*.h5"))  # list of Path objects [web:21][web:24]
+file_paths = sorted(base_dir.glob("Amitis_field*.h5"))
 
 for path in file_paths:
     compress = True
-    filename = path.name
+    filename = path.stem
 
-    obj_hdf = amitis_hdf(str(base_dir) + "/", filename)
-
-    # filename without extension
-    stem = path.stem 
+    obj_hdf = amitis_hdf(str(base_dir) + "/", filename+".h5")
 
     # extract exactly 6 digits after "field_"
-    m = re.search(r"field_(\d{6})", stem)  # [web:51][web:53]
+    m = re.search(r"field_(\d{6})", filename)  # [web:51][web:53]
     if not m:
-        raise ValueError(f"Could not extract sim_step from {stem!r}")
+        raise ValueError(f"Could not extract sim_step from {filename!r}")
 
     sim_step = int(m.group(1))
 

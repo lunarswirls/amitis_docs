@@ -2,6 +2,8 @@
 - Amitis is three-dimensional in spatial and velocity components
 - Cannot resolve electron scales, must stay on ion scales!
 	- $\Delta l = min$($\Delta x$, $\Delta y$, $\Delta z$) $\gg \delta_e$ (i.e., $\Delta l \geq 10\delta_e$  from [Equations](Equations.md))
+- Generally, the first 50 seconds of the simulation are the "initial" phase, during which the magnetosphere is developing and therefore not required for analysis. 
+	- Check the time step ($\Delta t$) in the input file
 
 # Input file definitions
 - Variable names in `*.inp` file should not be changed! 

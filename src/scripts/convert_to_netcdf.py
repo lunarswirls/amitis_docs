@@ -1,14 +1,29 @@
+"""
+This script is a first version of converting the .h5 data created by Amitis to .nc files.
+It assumes a data structure of:
+
+/Data
+    thisscript.py
+    2025_11_29/
+        example.h5
+    2025_11_29/
+        example.h5
+        example2.h5
+
+And it converts all files specified with the folder_str and saves them in the same path as the .h5-files       
+"""
+
+
 import pyamitis.version
 from pyamitis.amitis_netcdf import *
 from pyamitis.amitis_hdf import *
-
-
 from pathlib import Path
 import re
 import os
 
 cwd = os.path.dirname(os.path.realpath(__file__))
-base_dir = Path(cwd+"/Data")
+folder_str = "2025_12_04"
+base_dir = Path(cwd+"/"+folder_str)
 print(base_dir)
 
 # All files in base_dir matching Amitis_field*.h5 (non‑recursive)
@@ -19,6 +34,7 @@ for path in file_paths:
     filename = path.stem
 
     obj_hdf = amitis_hdf(str(base_dir) + "/", filename+".h5")
+    print(str(base_dir) + "/", filename+".h5")
 
     # extract exactly 6 digits after "field_"
     m = re.search(r"field_(\d{6})", filename)  # [web:51][web:53]
@@ -42,7 +58,7 @@ for path in file_paths:
 
     # print mean charge and mean mass of all species
     print(f'Mean charge of all species {obj_hdf.get_mean_charge()}')
-    print(f'Mean mass   of all species {obj_hdf.get_mean_mass()}  ')
+    print(f'Mean mass   of all species {obj_hdf.get_mean_mass()}')
 
     # Since we start the for-loop from 1, we need to increment stop range
     for s in range(1, obj_hdf.get_num_species()+1):

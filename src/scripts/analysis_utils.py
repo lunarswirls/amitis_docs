@@ -17,6 +17,3 @@ def fetch_stable_timestamp(dt: float, numsteps: int) -> int:
     stable_timestamp = 50*(numsteps/real_time)
 
     return int(stable_timestamp)
-
-
-

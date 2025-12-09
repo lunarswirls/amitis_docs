@@ -1,11 +1,21 @@
 matrix:
   - name: markdown
+    aspell:
+      lang: en
+      d: en_US
     dictionary:
       wordlists:
         - .wordlist.txt
       output: wordlist.dic
       encoding: utf-8
     pipeline:
+      - pyspelling.filters.context:
+          context_visible_first: true
+          escapes: '\\'
+          delimiters:
+            # Ignore inline math: $ ... $
+            - open: '\$'
+              close: '\$'
       - pyspelling.filters.markdown:
           markdown_extensions:
             - markdown.extensions.extra:

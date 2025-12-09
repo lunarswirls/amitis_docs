@@ -1,0 +1,30 @@
+name: Check Markdown
+
+on:
+  push:
+    paths:
+      - ".github/workflows/spellcheck.yml"
+      - "src/**"
+      - ".wordlist.txt"
+      - "README.md"
+  pull_request:
+    paths:
+      - ".github/workflows/spellcheck.yml"
+      - "src/**"
+      - ".wordlist.txt"
+      - "README.md"
+  schedule:
+    # Every day at 03:00 UTC
+    - cron: "0 3 * * *"
+
+permissions: read-all
+
+jobs:
+  check_spelling:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Spellcheck
+        uses: igsekor/pyspelling-any@v1.0.4

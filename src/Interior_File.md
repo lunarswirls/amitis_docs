@@ -26,7 +26,7 @@ And even more complex geometries can be defined such as PKT but one must be care
 ## Common pitfalls
 
 ### Line breaks
-Be careful editing this file, there should be no trailing linebreaks, it will otherwise be read as a layer with a conductivity of 0, which will cause:
+Be careful editing this file, there should be no trailing line breaks, it will otherwise be read as a layer with a conductivity of 0, which will cause:
 
 ```
  <<< *ERR in task 0 >>> (validate:128) | Interior resistivity (0.000000e+00) for layer (2)

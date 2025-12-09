@@ -107,7 +107,7 @@ Where A and B are empirical constants. As of now B is defined as 20. But keep ad
 - Definitions:
 	- $numspecies$ = integer defining total number of particle species
 - Definition per species i.e. proton:
-	- $name$ = arbitary string 
+	- $name$ = arbitrary string 
 	- $mass$ = 1.0 [units: not SI! amu]
 	- $charge$ = 1.0 [units: not SI! UC]
 	- $density$ = 5e6 [units: #/m^3]

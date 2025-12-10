@@ -1,4 +1,6 @@
-To create a nice-ish streamline plot:
+# Paraview Tricks and Tips
+
+To create a nicer streamline plot:
 1. Create a slice along a plane
 2. On the new slice, select Filters > Merge Vector Components
 3. In "Merge Vector Components" settings, select the settings to be whatever X, Y, Z components you want to represent as streamlines and color by magnitude of the vector

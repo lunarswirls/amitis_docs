@@ -2,11 +2,12 @@
 
 - Row format in *.itr file should not be changed!
 
-The interior file is used to describe a bodies interior conductivity. An arbitrary example can be found here:
+The interior file is used to describe a bodies interior conductivity. An arbitrary example can be seen here:
 
 | X [m] | Y [m] | Z [m] | R_x [m] | R_y [m] | R_z [m]  | eta [Ohm-m]|
 |-----|-----|-----|----------|----------|----------|---------|
 | 0.0 | 0.0 | 0.0 | 2440.0e3 | 2440.0e3 | 2440.0e3 | 1.0e6   |
+
 
 Where X,Y,Z describe the center of the conductivity source (currently at the origin) and R_x, R_y, R_z describe the radii of the sphere (currently a perfect sphere with radius of 2440 km). More complicated conductivity profiles can be defined such as a shell, which consists of three rows:
 

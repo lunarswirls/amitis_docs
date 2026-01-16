@@ -27,7 +27,7 @@ To be added later
 
 ## Attributes
 
-| Field                     | Input name | Unit | Comment                                           |
+| Field                     | Output name | Unit | Comment                                           |
 | ------------------------- | ---------- | ---- | ------------------------------------------------- |
 | Obstacle radius           | obs_radius | m   |   |
 | Grid cells in x-direction | nx         | –    | Number of grid points along x       |
@@ -39,3 +39,4 @@ To be added later
 | Maximum y                 | ymax       | m    | Upper domain boundary in y          |
 | Minimum z                 | zmin       | m    | Lower domain boundary in z          |
 | Maximum z                 | zmax       | m    | Upper domain boundary in z          |
+| Number of species         | ns       |     |           |

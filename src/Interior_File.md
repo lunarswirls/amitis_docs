@@ -2,22 +2,21 @@
 
 - Row format in *.itr file should not be changed!
 
-The interior file is used to describe a bodies interior conductivity. An arbitrary example can be found here:
-```
-| X   | Y   | Z   | R_x      | R_y      | R_z      | eta     |
-| [m] | [m] | [m] | [m]      | [m]      | [m]      | [Ohm-m] |
+The interior file is used to describe a bodies interior conductivity. An arbitrary example can be seen here:
+
+| X [m] | Y [m] | Z [m] | R_x [m] | R_y [m] | R_z [m]  | eta [Ohm-m]|
 |-----|-----|-----|----------|----------|----------|---------|
 | 0.0 | 0.0 | 0.0 | 2440.0e3 | 2440.0e3 | 2440.0e3 | 1.0e6   |
-```
-Where X,Y,Z describe the center of the conductivity source (currently at the origin) and R_x, R_y, R_z describe the radii of the sphere (currently a perfect sphere with radius of 2440 km). More complicated conductivity profiles can be defined such as a shell, which consists of three rows:
-```
-| X   | Y   | Z   | R_x      | R_y      | R_z      | eta   |
 
+
+Where X,Y,Z describe the center of the conductivity source (currently at the origin) and R_x, R_y, R_z describe the radii of the sphere (currently a perfect sphere with radius of 2440 km). More complicated conductivity profiles can be defined such as a shell, which consists of three rows:
+
+| X   | Y   | Z   | R_x      | R_y      | R_z      | eta   |
 |-----|-----|-----|----------|----------|----------|-------|
 | 0.0 | 0.0 | 0.0 | 2440.0e3 | 2440.0e3 | 2440.0e3 | 1.0e6 |
 | 0.0 | 0.0 | 0.0 | 1940.0e3 | 1940.0e3 | 1940.0e3 | 2.0e6 |
 | 0.0 | 0.0 | 0.0 |  940.0e3 |  940.0e3 |  940.0e3 | 1.0e6 |
-```
+
 
 Amitis then works its way from the outside overwriting conductivity values with later lines. In this case a shell reaches from 1940 - 2440 km, followed by e.g. a mantle region with conductivity of 2.0 S/m (940 - 1940 km) and the core from 0 - 940 km.
 

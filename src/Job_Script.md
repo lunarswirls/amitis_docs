@@ -21,3 +21,7 @@ export OMPI_MCA_opal_cuda_support=True
 srun Amitis 250116
 ```
 
+- Number of GPUs ($ngpu_{total}$) should be equal to $ngpux * ngpuy + ngpuz$ in the [Amitis input file](Amitis_Definitions.md).
+- On kebnekaise, each node has 2 GPUs so number of nodes should be $\lceil ngpu_{total} / 2 \rceil$
+- A rough estimate for number of GPUs on kebnekaise is
+$$ nx*ny*nz*(\text{sum of ppc for all species})*tnp_{percent} / ngpu_{total} = 600,000,000 $$

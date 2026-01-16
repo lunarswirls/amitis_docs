@@ -63,7 +63,7 @@
 	- Each GPU in Y gets 5 grid cells
 	- Then GPU grid in Y-Z plane is actually 7 cells in Y and 12 cells in Z
 ![gpu_domain_ghost_cells](/figs/gpu_domain_ghost_cells.png)
-- Total number of GPUs ($ngpux + ngpuy + ngpuz$) must be equal to GPUs requested in [job script](Job_Script.md)!
+- Total number of GPUs ($ngpux * ngpuy * ngpuz$) must be equal to GPUs requested in [job script](Job_Script.md)!
 
 ##### Common pitfalls:
 The number of GPUs has to be high enough to support, however many particles you are assigning in your simulation. In a rather small example we can see that roughly 36 million particles took up 1.6 GB on the single GPU we used for this example.

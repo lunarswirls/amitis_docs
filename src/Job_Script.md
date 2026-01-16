@@ -28,6 +28,8 @@ srun Amitis 250116
 For the very first run, we suggest leaving everything as is, except:
 - **time**: This needs to be adapted depending on your case. Ask your supervisor for help. If it is left like in this example you will be sorted as low priority.
 - **srun**: Here the path to your Amitis executable needs to be adapted.
+
+For more advanced runs, you can modify the number of GPUs as follows (check with your supervisor first):
 - Number of GPUs ($ngpu_{total}$) should be equal to $ngpux * ngpuy + ngpuz$ in the [Amitis input file](Amitis_Definitions.md).
 - On kebnekaise, each node has 2 GPUs so number of nodes should be $\lceil ngpu_{total} / 2 \rceil$
 - A rough estimate for number of GPUs on kebnekaise is

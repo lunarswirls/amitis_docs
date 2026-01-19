@@ -53,6 +53,20 @@ job-usage {job-id}
 ```
 which results in a link to Grafana which shows showing all the resources of HPC2N that are used. An example can be found [here](https://usage.hpc2n.umu.se/d/job-on-kebnekaise-gpu?var-jobid=35369534&from=1763561221000&to=1763563788000). An explanation can be seen under [resource-monitor](resource-monitor.md).
 
+## Restart Files
+- Restart files are saved in your output directory under a new folder labeled `/rst/`
+- If you need to restart a simulation, in your input file, define $rst=1$ and $rstname$ as the file **stem** in your `/rst/` dir (not the full file path!)
+	- If you use multiple GPUs, each restart file will have a GPU ID appended to the name, e.g. Amitis_rst_045000_*G000*.h5, Amitis_rst_045000_*G001*.h5 but you need to declare only the stem as Amitis_rst_045000.h5 in the input file to restart
+- Example:
+```
+# =============================================================================
+# Restart configuration
+# =============================================================================
+
+rst        = 1
+rstname    = ./rst/Amitis_rst_045000.h5
+```
+
 ## Numerical Noise
 - Can be resolved by changing $\Delta t$ or other tricks
 - 

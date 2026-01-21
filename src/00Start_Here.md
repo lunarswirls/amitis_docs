@@ -10,6 +10,7 @@ After this technical formality is out of the way one needs 4 files to be able to
 2. [Amitis.inp](Amitis_Definitions.md)
 3. [Amitis.itr](Interior_file.md)
 4. [Submission file](Job_Script.md)
+5. (Optional: Subset file Amitis.sub)
 
 Take your time to read through these link to understand what each file is for and how they need to be adapted for your case. You can request example files from your supervisor, if they are not provided in this documentation.
 

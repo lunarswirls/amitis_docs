@@ -158,3 +158,16 @@ Where A and B are empirical constants. As of now B is defined as 20. But keep ad
 	- $logstampcycle$ = 10 [units: number of steps] (0: off)
 	- $rstcycle$ = 0 [units: number of steps] (0: off)
 - For an overview of data that can be output visit [Output](Outputs.md).
+
+### Subset particle file
+Optionally particle data can be stored for a subset of the simulation domain. Here positions and velocities for all particle species will be stored. For that to happen two flags have to be set and one file needs to be added:
+- $withsubset$ = 1,  			#1 to read the particle subset file
+- $subsetsavecyle$ = 10000 		#To save the part subset every 10000th timestep
+- Create a file named Amitis.sub, where multiple subsets are defined in the following manner:
+
+| Position of a sphere x y z | Radius of the sphere in x y z |
+|----------------------------|-------------------------------|
+| 0 0 0 | 2000e3 2000e3 2000e3|
+
+This is an example for a sphere centered around (0,0,0) with a radius of 2000km. Careful in contrast to the interior files, it is not possible to create shells!
+ 

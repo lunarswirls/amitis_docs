@@ -162,7 +162,7 @@ Where A and B are empirical constants. As of now B is defined as 20. But keep ad
 ### Subset particle file
 Optionally particle data can be stored for a subset of the simulation domain. Here positions and velocities for all particle species will be stored. For that to happen two flags have to be set and one file needs to be added:
 - $withsubset$ = 1,  			#1 to read the particle subset file
-- $subsetsavecyle$ = 10000 		#To save the part subset every 10000th timestep
+- $subsetsavecyle$ = 10000 		#To save the part subset every 10000 time steps.
 - Create a file named Amitis.sub, where multiple subsets are defined in the following manner:
 
 | Position of a sphere x y z | Radius of the sphere in x y z |

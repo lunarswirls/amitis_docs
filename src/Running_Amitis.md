@@ -55,7 +55,7 @@ which results in a link to Grafana which shows showing all the resources of HPC2
 
 ## Restart Files
 - Restart files are saved in your output directory under a new folder labeled `/rst/`
-- If you need to restart a simulation, in your input file, define $rst=1$ and $rstname$ as the file **stem** in your `/rst/` dir (not the full file path!)
+- If you need to restart a simulation, in your input file, define $rst=1$ and $rstname$ as the file **stem** in your `/rst/` directory (not the full file path!).
 	- If you use multiple GPUs, each restart file will have a GPU ID appended to the name, e.g. Amitis_rst_045000_*G000*.h5, Amitis_rst_045000_*G001*.h5 but you need to declare only the stem as Amitis_rst_045000.h5 in the input file to restart
 - Example:
 ```

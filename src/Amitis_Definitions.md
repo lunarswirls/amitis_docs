@@ -43,6 +43,11 @@
 
 **Note**: Make sure that $x_\mathrm{max}-x_\mathrm{min})/dx$ is a natural number for all x,y,z cases.
 
+### Particle Spatial Distribution
+- Particle treatment is cell-center based
+![particle_distribution](/figs/2D_particle_distribution.png)
+
+
 ## Computing Decomposition
 - Specify number of GPUs to discretize simulation domain along each axis (recommended to be cubic)
 	- $ngpux$ (should be divisible by $nx$)
@@ -65,7 +70,7 @@
 ![gpu_domain_ghost_cells](/figs/gpu_domain_ghost_cells.png)
 - Total number of GPUs ($ngpux * ngpuy * ngpuz$) must be equal to GPUs requested in [job script](Job_Script.md)!
 
-##### Common pitfalls:
+### Common pitfalls:
 The number of GPUs has to be high enough to support, however many particles you are assigning in your simulation. In a rather small example we can see that roughly 36 million particles took up 1.6 GB on the single GPU we used for this example.
 
 ```

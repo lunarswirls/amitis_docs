@@ -14,7 +14,7 @@ The output file consists of many different physical quantities. As a way to stan
 | Magnetic field                | Bx, By, Bz           | T      |               |
 | Dipole Magnetic field         | Bdx, Bdy, Bdz         | T      |               |
 | Crustal Magnetic field        | Bux, Buy, Buz         |       |               |
-| Electric field.               | Ex, Ey, Ez           | V/m    |               |
+| Electric field               | Ex, Ey, Ez           | V/m    |               |
 | Dynamic resistivity           | dres             | Ohm/m  |               |
 | Object  resistivity           | ores             | Ohm/m  |               |
 

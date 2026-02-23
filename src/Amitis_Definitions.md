@@ -17,11 +17,27 @@
 	- $obsr$ = 2440.0e3 [units: meters]
 
 ## Temporal Decomposition
-- Time step calculated by $\Delta t \lt \frac{\mu_0 (\Delta l)^2}{(2\eta)}$ where $\Delta l$ = $min$($\Delta x$, $\Delta y$, $\Delta z$) and $\eta$ = $max$(inp_max($plsres$, $vacres$), itr_max($eta$))
-	- $\Delta t$ = 0.001 [units: seconds]
-- Total number of steps 
-	- $numsteps$ = 100000 
-- Total length of simulation = $numsteps$ * $\Delta t$
+The maximum timestep is limited by magnetic diffusion stability:
+
+$$
+\Delta t < \frac{\mathrm{subcycle}}{11} \frac{\mu_0 (\Delta l)^2}{2\eta}
+$$
+
+### Parameter Definitions
+
+| Parameter | Definition |
+|-----------|------------|
+| $\Delta l$ | $\min(\Delta x, \Delta y, \Delta z)$: minimum cell size [m] |
+| $\eta$ | $\max(\mathrm{inp\_max}(plsres, vacres), \mathrm{itr\_max}(\eta))$: maximum system resistivity [SI units] |
+| subcycle | Number of magnetic diffusion substeps (default: **11**; keep unless necessary) |
+| $\mu_0$ | Vacuum permeability ($4\pi \times 10^{-7}$ H/m) |
+
+### Simulation Parameters
+
+- **Timestep**: $\Delta t = 0.001$ s
+- **Steps**: $numsteps = 100000$
+- **Total time**: $numsteps \times \Delta t = 100$ s
+
 
 ## Spatial Decomposition
 - All units are SI
